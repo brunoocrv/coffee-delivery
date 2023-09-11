@@ -4,6 +4,7 @@ export const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   background: transparent;
 
@@ -26,16 +27,16 @@ export const CartButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  
-  background: ${props => props.theme['yellow-light']};
+
+  background: ${(props) => props.theme['yellow-light']};
 
   transition: background-color 0.3s;
 
   svg {
-    color: ${props => props.theme['yellow-dark']};
+    color: ${(props) => props.theme['yellow-dark']};
   }
 
   &:hover {
     opacity: 0.7;
   }
-`;
+`
