@@ -47,7 +47,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   )
 
   useEffect(() => {
-    console.log(cartItems)
+    const stateJSON = JSON.stringify(cartItems)
+
+    localStorage.setItem('@coffee-delivery:cart-1.0.0', stateJSON)
   }, [cartItems])
 
   const onAddToCart = (payload: Coffee) => {

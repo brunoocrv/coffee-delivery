@@ -7,7 +7,7 @@ import { Coffee } from '../../@types/coffee'
 import { CartContext } from '../../contexts/CartContext'
 
 export function CoffeeCard(coffee: Coffee) {
-  const { onAddToCart, onIncrease, onRemoveFromCart } = useContext(CartContext)
+  const { onAddToCart } = useContext(CartContext)
 
   const addToCart = () => {
     onAddToCart(coffee)
@@ -34,12 +34,6 @@ export function CoffeeCard(coffee: Coffee) {
             }).format(coffee.price)}
           </strong>
         </span>
-        <button onClick={() => onRemoveFromCart({ id: coffee.id, coffee })}>
-          remove
-        </button>
-        <button onClick={() => onIncrease({ id: coffee.id, coffee })}>
-          add
-        </button>
         <S.Buy className="cart" onClick={addToCart}>
           <ShoppingCartSimple />
         </S.Buy>
