@@ -27,6 +27,7 @@ export const CartButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 0.5rem;
+  position: relative;
 
   background: ${(props) => props.theme['yellow-light']};
 
@@ -39,4 +40,34 @@ export const CartButton = styled.button`
   &:hover {
     opacity: 0.7;
   }
+
+  span {
+    display: flex;
+    position: absolute;
+    margin-top: calc(0px - 0.5rem);
+    top: 0;
+    right: 0;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 0.75rem;
+
+    background: ${(props) => props.theme['yellow-dark']};
+    color: ${(props) => props.theme.white};
+  }
+`
+
+export const Location = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 0.5rem;
+  gap: 0.5rem;
+
+  background: ${(props) => props.theme['purple-light']};
+  color: ${(props) => props.theme['purple-dark']};
 `

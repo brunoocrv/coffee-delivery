@@ -1,10 +1,18 @@
 import { ShoppingCartSimple } from 'phosphor-react'
+import { useContext } from 'react'
 
 import * as S from './styles'
 
 import { Coffee } from '../../@types/coffee'
+import { CartContext } from '../../contexts/CartContext'
 
 export function CoffeeCard(coffee: Coffee) {
+  const { onAddToCart, onIncrease, onRemoveFromCart } = useContext(CartContext)
+
+  const addToCart = () => {
+    onAddToCart(coffee)
+  }
+
   return (
     <S.CardWrapper>
       <img src={coffee.image} alt="" />
@@ -26,17 +34,15 @@ export function CoffeeCard(coffee: Coffee) {
             }).format(coffee.price)}
           </strong>
         </span>
-
-        <S.CartWrapper>
-          <div>
-            <button>-</button>
-            <span>1</span>
-            <button>+</button>
-          </div>
-          <button className="cart">
-            <ShoppingCartSimple />
-          </button>
-        </S.CartWrapper>
+        <button onClick={() => onRemoveFromCart({ id: coffee.id, coffee })}>
+          remove
+        </button>
+        <button onClick={() => onIncrease({ id: coffee.id, coffee })}>
+          add
+        </button>
+        <S.Buy className="cart" onClick={addToCart}>
+          <ShoppingCartSimple />
+        </S.Buy>
       </S.Footer>
     </S.CardWrapper>
   )

@@ -19,7 +19,7 @@ export const coffees: Coffee[] = [
   {
     id: 1,
     name: 'Tradicional Espresso',
-    description: 'O tradicional café feito com água quente e grãos moídos',
+    description: 'Traditional coffee made with hot water and ground beans',
     tags: ['tradicional'],
     image: espresso,
     price: 9.9,
@@ -27,7 +27,7 @@ export const coffees: Coffee[] = [
   {
     id: 2,
     name: 'American Espresso',
-    description: 'Expresso diluído, menos intenso que o tradicional',
+    description: 'Diluted espresso, less intense than traditional',
     tags: ['tradicional'],
     image: americanEspresso,
     price: 9.9,
@@ -35,7 +35,7 @@ export const coffees: Coffee[] = [
   {
     id: 3,
     name: 'Creamy Espresso',
-    description: 'Café expresso tradicional com espuma cremosa',
+    description: 'Traditional espresso with creamy foam',
     tags: ['tradicional'],
     image: creamyEspresso,
     price: 9.9,
@@ -43,7 +43,7 @@ export const coffees: Coffee[] = [
   {
     id: 4,
     name: 'Cold Espresso',
-    description: 'Bebida preparada com café expresso e cubos de gelo',
+    description: 'Drink prepared with espresso and ice cubes',
     tags: ['tradicional', 'cold'],
     image: coldEspresso,
     price: 9.9,
@@ -51,7 +51,7 @@ export const coffees: Coffee[] = [
   {
     id: 5,
     name: 'Coffee with Milk',
-    description: 'Meio a meio de expresso tradicional com leite vaporizado',
+    description: 'Half and half traditional espresso with steamed milk',
     tags: ['tradicional', 'milk'],
     image: coffeMilk,
     price: 9.9,
@@ -59,8 +59,7 @@ export const coffees: Coffee[] = [
   {
     id: 6,
     name: 'Latte',
-    description:
-      'Uma dose de café expresso com o dobro de leite e espuma cremosa',
+    description: 'A shot of espresso with double the milk and creamy foam',
     tags: ['tradicional', 'milk'],
     image: latte,
     price: 9.9,
@@ -69,7 +68,7 @@ export const coffees: Coffee[] = [
     id: 7,
     name: 'Capuccino',
     description:
-      'Bebida com canela feita de doses iguais de café, leite e espuma',
+      'Cinnamon drink made from equal doses of coffee, milk and foam',
     tags: ['tradicional', 'milk'],
     image: capuccino,
     price: 9.9,
@@ -77,8 +76,7 @@ export const coffees: Coffee[] = [
   {
     id: 8,
     name: 'Macchiato',
-    description:
-      'Café expresso misturado com um pouco de leite quente e espuma',
+    description: 'Espresso mixed with some hot milk and froth',
     tags: ['tradicional', 'milk'],
     image: macchiato,
     price: 9.9,
@@ -86,7 +84,7 @@ export const coffees: Coffee[] = [
   {
     id: 9,
     name: 'Mochaccino',
-    description: 'Café expresso com calda de chocolate, pouco leite e espuma',
+    description: 'Espresso with chocolate syrup, little milk and foam',
     tags: ['tradicional', 'milk'],
     image: mochaccino,
     price: 9.9,
@@ -94,7 +92,7 @@ export const coffees: Coffee[] = [
   {
     id: 10,
     name: 'Hot Chocolate',
-    description: 'Bebida feita com chocolate dissolvido no leite quente e café',
+    description: 'Drink made with chocolate dissolved in hot milk and coffee',
     tags: ['special', 'milk'],
     image: hotChocolate,
     price: 9.9,
@@ -102,16 +100,15 @@ export const coffees: Coffee[] = [
   {
     id: 11,
     name: 'Cuban',
-    description:
-      'Drink gelado de café expresso com rum, creme de leite e hortelã',
+    description: 'Iced espresso drink with rum, cream and mint',
     tags: ['special', 'cold', 'alcoholic'],
     image: cuban,
     price: 9.9,
   },
   {
     id: 12,
-    name: 'hawaiian',
-    description: 'Bebida adocicada preparada com café e leite de coco',
+    name: 'Hawaiian',
+    description: 'Sweet drink prepared with coffee and coconut milk',
     tags: ['special'],
     image: hawaiian,
     price: 9.9,
@@ -119,7 +116,7 @@ export const coffees: Coffee[] = [
   {
     id: 13,
     name: 'Arabian',
-    description: 'Bebida preparada com grãos de café árabe e especiarias',
+    description: 'Drink prepared with Arabic coffee beans and spices',
     tags: ['special'],
     image: arabian,
     price: 9.9,
@@ -127,7 +124,8 @@ export const coffees: Coffee[] = [
   {
     id: 14,
     name: 'Irish',
-    description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
+    description:
+      'Drink made from coffee, Irish whiskey, sugar and whipped cream',
     tags: ['special', 'alcoholic'],
     image: irish,
     price: 9.9,

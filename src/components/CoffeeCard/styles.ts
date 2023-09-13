@@ -6,7 +6,7 @@ export const CardWrapper = styled.section`
   align-items: center;
   padding: 0 1.25rem;
   margin-top: 1rem;
-  width: 19rem;
+  width: 18.5rem;
   height: 18rem;
 
   background: ${(props) => props.theme['base-card']};
@@ -97,36 +97,17 @@ export const Footer = styled.footer`
   }
 `
 
-export const CartWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+export const Buy = styled.button`
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
 
-  > div {
-    max-width: 4.5rem;
-    max-height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    gap: 0.25rem;
-    border-radius: 8px;
-    background: ${(props) => props.theme['base-button']};
+  color: ${(props) => props.theme['purple-dark']};
+  transition: background-color 0.3s;
 
-    button {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      width: 2rem;
-      height: 2rem;
-
-      color: ${(props) => props.theme['purple-dark']};
-      transition: color 0.3s;
-
-      &:hover {
-        color: ${(props) => props.theme.purple};
-      }
-    }
+  &:hover {
+    background: ${(props) => props.theme.purple};
   }
 `

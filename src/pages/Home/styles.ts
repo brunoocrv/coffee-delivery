@@ -70,10 +70,10 @@ export const Items = styled.section`
 `
 
 export const CoffeesWrapper = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 1.5rem;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 0.5rem;
   flex-wrap: wrap;
   margin-top: 5rem;
 `
