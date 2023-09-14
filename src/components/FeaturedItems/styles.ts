@@ -11,6 +11,17 @@ export const Wrapper = styled.section`
     line-height: 1.3;
     color: ${(props) => props.theme['base-text']};
   }
+
+  .texts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    span {
+      font-size: 1rem;
+    }
+  }
 `
 
 export const IconContainer = styled.div<{ background: string }>`

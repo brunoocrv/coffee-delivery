@@ -7,6 +7,8 @@ import {
   Money,
   TrashSimple,
 } from 'phosphor-react'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 import * as S from './styles'
 
@@ -14,15 +16,34 @@ import { CartContext } from '../../contexts/CartContext'
 
 import { Coffee } from '../../@types/coffee'
 
+export type FormType = {
+  city: string
+  complement: string
+  district: string
+  number: string
+  postalCode: string
+  state: string
+
+  street: string
+}
+
+export type OrderStorageType = {
+  address: FormType
+  paymentMethod: string
+}
+
 export function Checkout() {
   const [coffees, setCoffees] =
     useState<{ coffee: Coffee; quantity?: number | undefined }[]>()
   const [paymentMethod, setPaymentMethod] = useState<
     'creditCard' | 'debitCard' | 'money'
-  >()
+  >('creditCard')
 
   const { items, onIncrease, onDecrease, onRemoveFromCart, total, itemCount } =
     useContext(CartContext)
+
+  const { register, handleSubmit } = useForm<FormType>()
+  const navigate = useNavigate()
 
   useEffect(() => {
     setCoffees(items)
@@ -36,8 +57,30 @@ export function Checkout() {
     }).format(number)
   }
 
+  const submit = (data: FormType) => {
+    const order = {
+      address: data,
+      total: total(),
+      items,
+      paymentMethod,
+    }
+    console.log(order)
+
+    const storageOrder: OrderStorageType = {
+      address: order.address,
+      paymentMethod,
+    }
+
+    localStorage.setItem(
+      '@coffee-delivery:order-1.0.0',
+      JSON.stringify(storageOrder),
+    )
+
+    navigate('/success')
+  }
+
   return (
-    <S.Wrapper>
+    <S.Wrapper onSubmit={handleSubmit(submit)}>
       <S.InfosContainer>
         <S.Titles>Complete your order</S.Titles>
         <S.Container>
@@ -51,13 +94,38 @@ export function Checkout() {
             </div>
           </S.Infos>
           <S.Address>
-            <S.TextField placeholder="Postal Code" />
-            <S.TextField placeholder="Street" $fullWidth />
-            <S.TextField placeholder="Number" />
-            <S.TextField placeholder="Complement" />
-            <S.TextField placeholder="District" />
-            <S.TextField placeholder="City" />
-            <S.TextField placeholder="State" />
+            <S.TextField
+              placeholder="Postal Code"
+              {...register('postalCode', {
+                maxLength: 10,
+              })}
+              required
+              type="number"
+            />
+            <S.TextField
+              placeholder="Street"
+              $fullWidth
+              required
+              {...register('street')}
+            />
+            <S.TextField
+              placeholder="Number"
+              {...register('number')}
+              required
+              type="number"
+            />
+            <S.TextField
+              placeholder="Complement"
+              {...register('complement')}
+              required
+            />
+            <S.TextField
+              placeholder="District"
+              {...register('district')}
+              required
+            />
+            <S.TextField placeholder="City" {...register('city')} required />
+            <S.TextField placeholder="State" {...register('state')} required />
           </S.Address>
         </S.Container>
         <S.Container>

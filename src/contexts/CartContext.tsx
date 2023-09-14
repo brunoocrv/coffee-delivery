@@ -10,6 +10,7 @@ import {
   increase,
   decrease,
 } from '../reducers/cart/actions'
+
 import { CartItem } from '../@types/cart'
 
 type CartContexType = {

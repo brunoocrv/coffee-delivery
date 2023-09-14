@@ -20,22 +20,22 @@ export function Home() {
 
           <S.Items>
             <FeaturedItems
-              description="Simple and safety buy"
+              title="Simple and safety buy"
               icon={<ShoppingCart />}
               background="yellow-dark"
             />
             <FeaturedItems
-              description="The package keeps coffee intact"
+              title="The package keeps coffee intact"
               icon={<Package />}
               background="base-text"
             />
             <FeaturedItems
-              description="Fast and trackable delivery"
+              title="Fast and trackable delivery"
               icon={<Timer />}
               background="yellow"
             />
             <FeaturedItems
-              description="Coffee arrives fresh to you"
+              title="Coffee arrives fresh to you"
               icon={<Coffee />}
               background="purple"
             />

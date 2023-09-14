@@ -3,20 +3,25 @@ import { ReactNode } from 'react'
 import * as S from './styles'
 
 type FeaturedItemsProps = {
-  description: string
+  title: ReactNode
+  description?: ReactNode
   icon: ReactNode
   background: string
 }
 
 export function FeaturedItems({
-  description,
+  title,
+  description = '',
   icon,
   background,
 }: FeaturedItemsProps) {
   return (
     <S.Wrapper>
       <S.IconContainer background={background}>{icon}</S.IconContainer>
-      <span>{description}</span>
+      <div className="texts">
+        {title}
+        {description}
+      </div>
     </S.Wrapper>
   )
 }

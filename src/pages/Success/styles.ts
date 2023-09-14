@@ -36,7 +36,8 @@ export const OrderDetails = styled.div`
     padding: 2.5rem;
     gap: 2rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
 
     border: double 1px transparent;
