@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import {
   Bank,
   CreditCard,
@@ -9,16 +9,32 @@ import {
 } from 'phosphor-react'
 
 import * as S from './styles'
+
 import { CartContext } from '../../contexts/CartContext'
 
+import { Coffee } from '../../@types/coffee'
+
 export function Checkout() {
+  const [coffees, setCoffees] =
+    useState<{ coffee: Coffee; quantity?: number | undefined }[]>()
   const [paymentMethod, setPaymentMethod] = useState<
     'creditCard' | 'debitCard' | 'money'
   >()
 
-  const { items, onIncrease, onDecrease } = useContext(CartContext)
+  const { items, onIncrease, onDecrease, onRemoveFromCart, total, itemCount } =
+    useContext(CartContext)
 
-  console.log(items)
+  useEffect(() => {
+    setCoffees(items)
+  }, [items])
+
+  const convertCurrency = (number: number) => {
+    return new Intl.NumberFormat('pt-BR', {
+      currency: 'BRL',
+      style: 'currency',
+      minimumFractionDigits: 2,
+    }).format(number)
+  }
 
   return (
     <S.Wrapper>
@@ -85,60 +101,64 @@ export function Checkout() {
       <S.InfosContainer>
         <S.Titles>Selectioned Coffees</S.Titles>
         <S.Container>
-          {items.map((item) => (
-            <S.CoffeeDetails key={item.coffee.id}>
-              <div>
-                <img src={item.coffee.image} alt="" />
-                <div className="actions">
-                  <span>{item.coffee.name}</span>
-                  <div className="handlerCoffee">
-                    <div className="quantity">
-                      <button
+          {coffees &&
+            coffees.map((item) => (
+              <S.CoffeeDetails key={item.coffee.id}>
+                <div>
+                  <img src={item.coffee.image} alt="" />
+                  <div className="actions">
+                    <span>{item.coffee.name}</span>
+                    <div className="handlerCoffee">
+                      <div className="quantity">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            onDecrease({
+                              id: item.coffee.id,
+                              coffee: item.coffee,
+                            })
+                          }
+                        >
+                          -
+                        </button>
+                        <span>{itemCount(item.coffee.id)}</span>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            onIncrease({
+                              id: item.coffee.id,
+                              coffee: item.coffee,
+                            })
+                          }
+                        >
+                          +
+                        </button>
+                      </div>
+                      <S.RemoveButton
                         type="button"
                         onClick={() =>
-                          onDecrease({
+                          onRemoveFromCart({
                             id: item.coffee.id,
                             coffee: item.coffee,
                           })
                         }
                       >
-                        -
-                      </button>
-                      <span>1</span>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          onIncrease({
-                            id: item.coffee.id,
-                            coffee: item.coffee,
-                          })
-                        }
-                      >
-                        +
-                      </button>
+                        <TrashSimple size={16} />
+                        REMOVE
+                      </S.RemoveButton>
                     </div>
-                    <S.RemoveButton>
-                      <TrashSimple size={16} />
-                      REMOVE
-                    </S.RemoveButton>
                   </div>
                 </div>
-              </div>
-              <strong>
-                R$
-                {new Intl.NumberFormat('pt-BR', { currency: 'BRL' }).format(
-                  item.coffee.price,
-                )}
-              </strong>
-            </S.CoffeeDetails>
-          ))}
+                <strong>{convertCurrency(item.coffee.price)}</strong>
+              </S.CoffeeDetails>
+            ))}
           <S.Values>
             <span>Itens total</span>
-            <span>R$ 30,50</span>
+            <span>{convertCurrency(total())}</span>
           </S.Values>
           <S.Values>
             <strong>Total</strong>
-            <strong>R$ 30,50</strong>
+            <strong>{convertCurrency(total())}</strong>
           </S.Values>
           <S.CheckoutButton type="submit">Confirm Order</S.CheckoutButton>
         </S.Container>

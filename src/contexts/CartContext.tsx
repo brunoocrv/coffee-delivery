@@ -21,6 +21,8 @@ type CartContexType = {
   onRemoveFromCart: (payload: CartItem) => void
   onIncrease: (payload: CartItem) => void
   onDecrease: (payload: CartItem) => void
+  itemCount: (coffeeId: number) => number
+  total: () => number
 }
 
 export type CartType = CartItem[]
@@ -72,6 +74,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     dispatch(decrease(payload))
   }
 
+  const itemCount = (coffeeId: number) => {
+    return (
+      cartItems.cart.find((coffee) => coffee.id === coffeeId)?.quantity || 0
+    )
+  }
+
+  const total = () => {
+    return cartItems.cart.reduce(
+      (total, product) => total + product.coffee.price * product.quantity!,
+      0,
+    )
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -80,6 +95,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         onRemoveFromCart,
         onIncrease,
         onDecrease,
+        itemCount,
+        total,
       }}
     >
       {children}
